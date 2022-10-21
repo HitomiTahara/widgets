@@ -3,6 +3,16 @@ import axios from "axios";
 
 const Convert = ({ language, text }) => {
   const [translated, setTranslated] = useState("");
+  const [debouncedText, setDebouncedText] = useState(text);
+
+  useEffect(() => {
+    const timeId = setTimeout(() => {
+      setDebouncedText(text);
+    }, 500);
+    return () => {
+      clearTimeout(timeId);
+    };
+  }, [text]);
 
   useEffect(() => {
     const doTranslation = async () => {
@@ -11,17 +21,17 @@ const Convert = ({ language, text }) => {
         {},
         {
           params: {
-            q: text,
+            q: debouncedText,
             target: language.value,
             key: process.env.REACT_APP_KEY,
           },
         }
       );
       setTranslated(data.data.translations[0].translatedText);
-      console.log(data);
     };
+
     doTranslation();
-  }, [language, text]);
+  }, [language, debouncedText]);
 
   return (
     <div>
