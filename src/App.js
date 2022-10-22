@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-// import Accordion from "./components/Accordion";
-// import Search from "./components/Search";
-// import Dropdown from "./components/Dropdown";
+import Accordion from "./components/Accordion";
+import Search from "./components/Search";
+import Dropdown from "./components/Dropdown";
 import Translate from "./components/translate";
+import Route from "./components/Route";
 
 const items = [
   {
@@ -34,34 +35,56 @@ const options = [
   },
 ];
 
-const App = () => {
-  // const [selected, setSelected] = useState(options[0]);
-  // const [showDropdown, setShowDropdown] = useState(true);
+const showAccordion = () => {
+  if (window.location.pathname === "/") {
+    return <Accordion items={items} />;
+  }
+};
 
+const showList = () => {
+  if (window.location.pathname === "/list") {
+    return <Search />;
+  }
+};
+const showDropdown = () => {
+  if (window.location.pathname === "/dropdown") {
+    return <Dropdown />;
+  }
+};
+
+const showTranslate = () => {
+  if (window.location.pathname === "/translate") {
+    return <Translate />;
+  }
+};
+
+const showComponent = (route, component) => {
+  return window.location.pathname === route ? component : null;
+};
+
+const App = () => {
+  const [selected, setSelected] = useState(options[0]);
   return (
     <div>
-      {/* <Accordion items={items} />
-      <Search /> */}
-      {/* <button
-        onClick={() => {
-          setShowDropdown(!showDropdown);
-        }}
-        className="ui button blue"
-      >
-        Toggle Dropdown
-      </button>
-      {showDropdown ? (
+      <Route path="/">
+        <Accordion items={items} />
+      </Route>
+      <Route path="/list">
+        <Search />
+      </Route>
+      <Route path="/translate">
+        <Translate />
+      </Route>
+      <Route path="/dropdown">
         <Dropdown
-          label="Selected a Color"
+          label="Selected a color"
+          options={options}
           selected={selected}
           onSelectedChange={setSelected}
-          options={options}
-          pText="This text is "
+          pText="You selected a "
           valueText={selected.value}
         />
-      ) : null} */}
-
-      <Translate />
+      </Route>
     </div>
   );
 };
