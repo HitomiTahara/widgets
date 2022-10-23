@@ -28,6 +28,7 @@ const Translate = () => {
     <div>
       <div className="ui form">
         <div className="field">
+          <label className="">SORRY! only search at localhost:3000 </label>
           <label>Enter text</label>
           <input value={text} onChange={(e) => setText(e.target.value)} />
         </div>
