@@ -47,7 +47,7 @@ const App = () => {
   return (
     <div className="ui container">
       <Header />
-      <Route path="/widgets">
+      <Route path="/widgets/">
         <Accordion items={items} />
       </Route>
       <Route path="/list">
