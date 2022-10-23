@@ -65,15 +65,17 @@ const Search = () => {
     <div>
       <div className="ui form">
         <div className="field">
-          <label>hello:{term}</label>
+          <label>Search</label>
           <input
-            className="input"
+            className="input p5"
             type="text"
             value={term}
             onChange={onInputChange}
           />
+          <label className="pt5">Results</label>
         </div>
       </div>
+
       <div className="ui celled list">{renderedResults}</div>
     </div>
   );

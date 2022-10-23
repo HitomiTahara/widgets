@@ -6,7 +6,6 @@ import Translate from "./components/Translate";
 import Route from "./components/Route";
 import Header from "./components/Header";
 
-
 const items = [
   {
     title: "What is React",
@@ -46,9 +45,9 @@ const showAccordion = () => {
 const App = () => {
   const [selected, setSelected] = useState(options[0]);
   return (
-    <div>
+    <div className="ui container">
       <Header />
-      <Route path="/">
+      <Route path="/widgets">
         <Accordion items={items} />
       </Route>
       <Route path="/list">
